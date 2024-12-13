@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClimaTempo.Views.PrevisaoView"
+             x:Name="PrevisaoView"
+             Title="PrevisaoView">
+    <ScrollView>
+        <VerticalStackLayout>
+        <Entry
+            Placeholder="Digite sua cidade"
+            Text="{Binding Cidade_pesquisada}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+            <Label Text="{Binding Max}"/>
+            <Label Text="{Binding Min}"/>
+            <Button Command="{Binding BuscarCidadesCommand}"
+            Text="Pesquisar Cidade"/>
+
+            <CollectionView ItemsSource="{Binding Cidades}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                            <Label  
+                             Text="{Binding Nome}"/>
+                            <Label
+                            Text="{Binding Id}"/>
+                            <Label 
+                            Text="{Binding Estado}"/>
+                            <Button Command="{Binding Path = BindingContext.BuscarPrevisaoCommand, Source={x:Reference PrevisaoView}}"
+                                    CommandParameter="{Binding Id}"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label 
+            Text="{Binding Data}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Cidade}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Estado}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Max}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Min}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Indice_uv}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label 
+            Text="{Binding Condicao}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding ProximosDias}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label 
+                            Text="{Binding Min}"/>
+                            <Label 
+                            Text="{Binding Max}"/>
+                                <Label 
+                            Text="{Binding Condicao}"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
